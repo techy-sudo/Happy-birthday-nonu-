@@ -1,0 +1,68 @@
+/* styles.css */
+
+/* General body and background */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    overflow: hidden;
+}
+
+/* Container for video and birthday effects */
+.birthday-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Video player styles */
+.video-container {
+    position: relative;
+    z-index: 10;
+}
+
+/* Birthday effects: Sparkles */
+.sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('sparkles.gif') repeat;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Balloons shower effect */
+.balloon-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.balloon {
+    position: absolute;
+    animation: float 10s infinite;
+    opacity: 0.8;
+    z-index: 1;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-300px) rotate(360deg);
+    }
+    100% {
+        transform: translateY(0) rotate(720deg);
+    }
+}
