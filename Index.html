@@ -3,140 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player with Sparkles</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #000;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background-color: #000;
-        }
-
-        #sparkles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        @keyframes sparkle {
-            0% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(1.5);
-            }
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background-color: white;
-            border-radius: 50%;
-            opacity: 0;
-            animation: sparkle 1s ease-in-out infinite;
-        }
-
-    </style>
+    <title>Birthday Video Player</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="birthday-container">
+        <!-- Birthday Effects: Balloons and Sparkles -->
+        <div id="balloon-container" class="balloon-container"></div>
+        <div id="sparkles" class="sparkles"></div>
 
-<div class="video-container">
-    <video id="video" autoplay muted loop>
-        <source src="your-video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <canvas id="sparkles"></canvas>
-</div>
+        <!-- Video Player -->
+        <div class="video-container">
+            <video id="birthday-video" width="100%" controls autoplay>
+                <source src="your-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
 
-<script>
-    const canvas = document.getElementById('sparkles');
-    const ctx = canvas.getContext('2d');
-    const video = document.getElementById('video');
-
-    // Set canvas size equal to video size
-    video.addEventListener('play', () => {
-        canvas.width = video.offsetWidth;
-        canvas.height = video.offsetHeight;
-    });
-
-    // Function to create sparkles
-    function createSparkle() {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const size = Math.random() * 5 + 2;
-        const sparkle = {
-            x: x,
-            y: y,
-            size: size,
-            opacity: 1,
-            speed: Math.random() * 3 + 2
-        };
-
-        return sparkle;
-    }
-
-    let sparklesArray = [];
-
-    // Function to draw sparkles on canvas
-    function drawSparkles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Add new sparkles
-        if (Math.random() < 0.1) {
-            sparklesArray.push(createSparkle());
-        }
-
-        // Draw each sparkle
-        sparklesArray.forEach((sparkle, index) => {
-            ctx.beginPath();
-            ctx.arc(sparkle.x, sparkle.y, sparkle.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${sparkle.opacity})`;
-            ctx.fill();
-            
-            sparkle.opacity -= 0.02; // Decrease opacity for fade effect
-            sparkle.size += 0.1; // Increase size for sparkle growth
-            sparkle.y -= sparkle.speed; // Move sparkle upwards
-
-            // Remove sparkle when it goes off-screen
-            if (sparkle.y < 0 || sparkle.opacity <= 0) {
-                sparklesArray.splice(index, 1);
-            }
-        });
-    }
-
-    // Main animation loop
-    function animate() {
-        if (video.paused || video.ended) return;
-        drawSparkles();
-        requestAnimationFrame(animate);
-    }
-
-    // Start animation when video starts playing
-    video.addEventListener('play', () => {
-        animate();
-    });
-</script>
-
+    <script src="scripts.js"></script>
 </body>
 </html>
