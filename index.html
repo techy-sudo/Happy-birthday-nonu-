@@ -3,24 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Video Player</title>
-    <link rel="stylesheet" href="Styles.css">
+    <title>Fullscreen Video with Birthday Effect</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="birthday-container">
-        <!-- Birthday Effects: Balloons and Sparkles -->
-        <div id="balloon-container" class="balloon-container"></div>
-        <div id="sparkles" class="sparkles"></div>
-
-        <!-- Video Player -->
-        <div class="video-container">
-            <video id="birthday-video" width="100%" controls autoplay>
-                <source src="your-video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
+    <div id="video-container">
+        <video id="birthday-video" autoplay muted loop>
+            <source src="your-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="birthday-effect"></div>
     </div>
-
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
